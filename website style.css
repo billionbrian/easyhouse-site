@@ -1,0 +1,53 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-attachment: fixed;
+ background-image: url('pexels-christa-grover-977018-2121121.jpg')
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 0;
+  background: #5e22c0;
+  color: #333;
+}
+header {
+  background-color: #8e44ad;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+nav a {
+  color: rgb(106, 32, 175);
+  margin: 0 10px;
+  text-decoration: nonebold;
+}
+footer {
+  background-color: #222;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+.hero {cdc;
+}
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #8e44ad;
+  color: rgb(160, 16, 16);
+  text-decoration: none;
+  border-radius: 5px;
+}\
+.logo {
+  width: 100px;
+  height: auto;
+
+
+
+
+
+
+
+
+
