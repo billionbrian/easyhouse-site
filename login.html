@@ -8,9 +8,8 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #0ace967c;
-            background image url('daniel-barnes-RKdLlTyjm5g-unsplash.jpg');
+            background-image: url('daniel-barnes-RKdLlTyjm5g-unsplash.jpg');
             background-size: cover;
-            image width: 100px;
             margin: 0;
             padding: 0;
             display: flex;
@@ -78,20 +77,57 @@
 <body>
     <div class="login-container">
         <h1>EASYHOUSE Login</h1>
-        <form action="/login" method="POST">
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Enter your password" required>
-            </div>
+        <form id="loginForm">
+            <input type="text" id="username" name="username" placeholder="Username" required />
+            <input type="password" id="password" name="password" placeholder="Password" required>
             <button type="submit" class="login-btn">Login</button>
         </form>
         <div class="signup-link">
-            <p>Don't have an account? <a href="/signup">Sign up here</a></p>
+            <p>Don't have an account? <a href="signup.html">Sign up here</a></p>
         </div>
     </div>
+    <script src="login.js"></script>
 </body>
 </html>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("loginForm").addEventListener("submit", async function(e) {
+        e.preventDefault(); // Prevent the default form submit
+
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        try {
+            const response = await fetch("http://localhost:5000/api/auth/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    username,
+                    password,
+                }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                alert("Login successful!");
+                // Store the token in localStorage
+                if (data.token) {
+                    localStorage.setItem("token", data.token);
+                }
+                console.log("Login successful:", data);
+                // Redirect the user
+                window.location.href = "home.html";
+            } else {
+                alert(`Login failed: ${data.message}`);
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            alert("Login failed due to a network error.");
+        }
+    });
+});
+</script>
+
